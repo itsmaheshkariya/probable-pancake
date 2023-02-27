@@ -1,4 +1,4 @@
-name: CI
+name: CIi
 on:
   push:
     branches: [ master ]
@@ -10,12 +10,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - run: echo "papa"
 
 
       - name: Scripts
         run: |
+          echo "start the build and push"
           docker build -t app .
           echo ${{ secrets.DOCKER_SECRET }} | docker login -u ${{ secrets.DOCKER_USER }} --password-stdin 
-          docker tag app itsmaheshkariya/test
-          docker push itsmaheshkariya/test
+          docker tag app ovdi/dockerhub1:001
+          docker push ovdi/dockerhub1:001
           
